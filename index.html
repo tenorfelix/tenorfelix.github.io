@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felix Leander Läpple - Tenor</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+body {
+	background-color: #f8f9fa;
+	font-family: Georgia, Merriweather, Tisa, serif;
+}
+
+.content {
+	--bradius: 1.5em;
+	background: #333;
+	padding: 20px;
+	border-radius: var(--bradius);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+	position: sticky;
+	top: 5em;
+	height: fit-content;
+	padding: 0px;
+	margin-bottom: 1.5em;
+}
+
+.author-img img {
+	width: 100%;
+	border-radius: var(--bradius) var(--bradius) 0 0;
+}
+
+.author-text {
+	padding: 1.5em;
+	text-align: center;
+}
+
+.author-all-btn {
+	/*border: 1px solid black;*/
+	
+}
+
+body {
+	color: white;
+	background-color: black;
+}
+
+.konzert {
+	border: 2px solid rgb(255 255 255/ 20%);
+	box-shadow: 4px 4px 4px rgb(0 0 0/ 20%);
+	margin-bottom: 1rem;
+	color: #fff !important;
+	background-color: rgb(255 255 255/ 20%);
+	padding: 1em;
+	/*border-radius: calc(var(--bradius)/4);*/
+}
+
+.konzert p {
+	padding-left: 2em;
+	text-indent: -2rem;
+}
+
+.konzert a:link, .konzert a:visited {
+	color: #88f;
+}
+
+.sologig {
+	background-color: rgb(255 255 255/ 10%);
+	font-size: 110%;
+	border-left: 2px solid white;
+}
+
+/* Dropdown-Animation für Hover */
+.dropdown .dropdown-menu {
+	/*visibility: hidden; /* Verstecke das Menü standardmäßig */
+	opacity: 0; /* Mach es unsichtbar */
+	max-height: 0; /* Setze die Höhe auf 0 */
+	padding: 0 1rem;
+	display: block;
+	overflow: hidden; /* Verhindert das Zeigen von Inhalten */
+	transition: all 0.9s ease;
+	/* Lange Transition für alle Eigenschaften */
+}
+
+.desktopv.dropdown:hover .dropdown-menu {
+	/*visibility: visible; /* Zeige das Menü */
+	display: block;
+	padding: 0.25rem 1rem;
+	opacity: 0.8; /* Mache das Menü sichtbar */
+	max-height: 200px; /* Stelle die Höhe des Menüs wieder her */
+	transition: all 0.5s ease;
+	/* Entferne die Verzögerung für visibility */
+}
+
+*[data-vergangenheit="true"] {
+	display: none !important;
+}
+</style>
+<style>
+.cbtab {
+	margin: 1em;
+}
+
+.checkbox-wrapper-3 input[type="checkbox"] {
+	visibility: hidden;
+	display: none;
+}
+
+.checkbox-wrapper-3 .toggle {
+	position: relative;
+	display: block;
+	width: 40px;
+	height: 20px;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-3 .toggle:before {
+	content: "";
+	position: relative;
+	top: 3px;
+	left: 3px;
+	width: 34px;
+	height: 14px;
+	display: block;
+	background: #9A9999;
+	border-radius: 8px;
+	transition: background 0.4s ease;
+}
+
+.checkbox-wrapper-3 .toggle span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	display: block;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 3px 8px rgba(154, 153, 153, 0.5); /*grau*/
+	transition: all 0.4s ease;
+}
+
+.checkbox-wrapper-3 .toggle span:before {
+	content: "";
+	position: absolute;
+	display: block;
+	margin: -18px;
+	width: 56px;
+	height: 56px;
+	background: rgba(#444, 0.5); /*hell lila*/
+	border-radius: 50%;
+	transform: scale(0);
+	opacity: 1;
+	pointer-events: none;
+}
+
+.checkbox-wrapper-3 #cb:checked+.toggle:before {
+	background: #999; /*lila dunkler*/
+}
+
+.checkbox-wrapper-3 #cb:checked+.toggle span {
+	background: #777; /*lilablau intensiv*/
+	transform: translateX(20px);
+	transition: all 0.4s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.15s
+		ease;
+	box-shadow: 0 3px 8px rgba(#ddd, 0.2); /*sehr hell lila*/
+}
+
+.checkbox-wrapper-3 #cb:checked+.toggle span:before {
+	transform: scale(1);
+	opacity: 0;
+	transition: all 0.8s ease;
+}
+
+.konzert {
+	max-height: 700px;
+	overflow: hidden;
+	transition: all 0.8s ease;
+}
+
+.konzertwrapper:has(#cb:checked) .konzert {
+	/*transform: scale(1);*/
+	opacity: 0;
+	/*font-style: italic;*/
+	max-height: 0px;
+	padding: 0px 0px 0px 1em;
+	margin: 0px;
+	border: 0px;
+	margin-bottom: 0px;
+	transition: all 0.3s ease;
+}
+
+.konzertwrapper:has(#cb:checked) .konzert.sologig {
+	/*font-style:normal !important;*/
+	opacity: 1;
+	display: block;
+	padding: 1em;
+	max-height: 4000px;
+	margin-bottom: 1rem;
+	border: 2px solid rgb(255 255 255/ 20%);
+	border-left: 2px solid white;
+}
+#content_home {
+	display:none;
+}
+@media screen and (min-width: 900px) {
+	#vitatext {
+		columns: 2; 
+	}
+	#vita, #gesangsunterricht, #newsletter, .pagebody {
+		padding: 3em;
+	}
+}
+li.active li.active, li.active li a:link.active, li.active li a:visited.active {
+	background-color:white !important;
+	color:black !important;
+}
+.footerlinks {
+	font-size: 12px;
+	word-spacing: 3rem;
+	text-align:center;
+}
+</style>
+<script>
+	var globalkasten;
+	function checkeDatum(kasten, ind) {
+		var checkMode = true;
+		if (checkMode) {
+			console.log("checke kasten" + ind);
+		}
+		var konz = kasten;
+		var ktext = konz.textContent + "";
+		pattern = /([0-9]{1,2}\.){2}([0-9]{2})([0-9]{2})?\,? /;
+		pattern2 = /([0-9]{1,2})\.([0-9]{1,2})\.(([0-9]{2})([0-9]{2})?)/;
+		repl = "$3\-$2\-$1";
+		daten = ktext.match(pattern);
+		daten2 = daten[0].match(pattern2);
+		var stilldatum = daten2[0];
+		//console.log(stilldatum);
+		var datumschoen = stilldatum.replace(pattern2, repl);
+		$(kasten).attr("data-date", datumschoen);
+		//console.log("schön: "+ datumschoen);
+	
+		var parsedDate = Date.parse(datumschoen);
+		if (parsedDate < (Date.now() - 86400000)) {
+			//if(parsedDate < (Date.parse("2025-09-10")-86400000)){
+			//globKast.classList.add("invisible");
+			console.log("Altes Konzert:" + ktext);
+			$(kasten).attr("data-vergangenheit", "true");
+
+			$(kasten).attr("ind", ind);
+			var selektor = "body .konzert:nth-child("+ind+")";
+			console.log(selektor);
+			$("body .konzert:nth-child("+ind+")").css("display","none");
+			console.log("ich versuche zu setzen: "+kasten+"\n mit attribut data-vergangenheit")
+			kasten.setAttribute("data-vergangenheit","true");
+			globalkasten = kasten;
+			$.ajax(
+							{
+								url : "/ajax/benachrichtigung_altertermin.php?altesdatum="
+										+ datumschoen
+							}).done(function(res) {
+						console.log(res);
+					});
+		}
+		/*
+		kasten.classList.forEach(cl => { 
+			if(cl.startsWith("datum")){
+				//alert(cl);
+				var dasDatum = cl.substring(5);
+				
+				if(checkMode) {
+					alert(dasDatum);
+				}
+				var parsedDate = Date.parse(dasDatum);
+				if(parsedDate < (Date.now()-86400000)){
+					if(checkMode) {
+						alert("uralt!");
+					}
+					globKast.classList.add("invisible");
+				} else {
+					if(checkMode) {
+						alert("kommt noch!");
+					}
+				}
+			}
+		});
+		 */
+	}
+	var konz_kaesten;
+	var globKast;
+
+	function alteAussortieren() {
+		konz_kaesten = $(".konzert");
+		konz_kaesten.each(function(ind) {
+			globKast = this;
+			checkeDatum(this, ind);
+		});
+	}
+	
+	function ladeSeite(pagename){
+		
+		$(".nav-item, .nav-item a").removeClass("active");
+		$(".nav_"+pagename+", .nav_"+pagename+" a").addClass("active");
+
+		alteAussortieren();
+		$.get(pagename+".html", function(data) {
+			$("#contentwrapper").html(data);
+			$("#content_home").css("display","block");
+			alteAussortieren();
+		});
+	}
+	
+	$(document)
+			.ready(
+					function() {
+						alteAussortieren();
+						//alert(konz_kaesten.length);
+						//$("#cb").attr("onclick","cbaction()");
+						// Add slideDown animation to Bootstrap dropdown when expanding.
+						$('.dropdown').on(
+								'show.bs.dropdown',
+								function() {
+									$(this).find('.dropdown-menu').first()
+											.stop(true, true).slideDown();
+								});
+
+						// Add slideUp animation to Bootstrap dropdown when collapsing.
+						$('.dropdown').on(
+								'hide.bs.dropdown',
+								function() {
+									$(this).find('.dropdown-menu').first()
+											.stop(true, true).slideUp();
+								});
+						if (window.location.href.includes("vita")) {
+							ladeSeite("vita");
+						
+							//alert("vita");
+							/*var newhtml = "<div id='vita' style='columns:2; padding:3em;'><p>Felix Leander Läpple wurde 1996 in Frankfurt am Main geboren. Im Grundschulalter übernahm er bereits die Hauptrolle in einem Kindermusical und sang ab 2007 im Kinderchor Frankfurt in Verbindung mit dem Hessischen Rundfunk. 2016-2017 nahm er ersten Gesangsunterricht bei Erhard Brunner. Ab 2020 studierte er an der Hochschule für Musik und Tanz Köln Gesangspädagogik bei Martin Lindsay, seit 2022 im Bachelor of Music Gesang bei Prof. Brigitte Lindner und Boris Leisenheimer.</p>"
+									+
+
+									"<p>2023 debütierte er mit J.S. Bachs Weihnachtsoratorium als Evangelist und Arientenor in Köln unter Leitung von Hanna Bohlen. Seinen ersten Liederabend sang er im Juni 2024 gemeinsam mit Sandrine Droin, Sopran, und Wolfgang Runkel am Klavier in Bad Orb mit Schumanns Dichterliebe.</p>"
+									+
+
+									"<p>Seit Januar 2024 ist er Mitglied des Vokal- und Tanzensembles CHOREOS unter Stephan Lutermann und Lars Scheibner. Seit September 2024 ist er Akademist der WDR-Chorakademie.</p>"
+									+
+
+									"<p>Konzertreisen führten ihn u.a. nach Aarhus, Rom, Sizilien, Barcelona, Istanbul und Manila (Philippinen).</p></div>";
+							*/
+							
+							/*$.get("vita.html", function(data) {
+								$("#contentwrapper").html(data);
+							});
+							$(".nav_vita, .nav_vita a").addClass("active");*/
+							
+							
+						} else if (window.location.href
+								.includes("gesangsunterricht")) {
+							ladeSeite("gesangsunterricht");
+						
+							//alert("vita");
+							/*var newhtml = "<div id='gesangsunterricht' style='columns:1; padding:3em;'><p>Ich biete Gesangsunterricht in Köln-Mülheim an.</p>"
+									+
+
+									"<p>Kommen Sie bei Interesse gerne auf mich zu.</p>"
+									+ "</div>";
+							$("#contentwrapper").html(newhtml);*/
+							/*
+							$.get("gesangsunterricht.html", function(data) {
+								$("#contentwrapper").html(data);
+							});
+							$(".nav_gesangsunterricht, .nav_gesangsunterricht a").addClass("active");
+							*/
+						} else if (window.location.href.includes("kontakt")) {
+							ladeSeite("kontakt");
+							//alert("vita");
+							/*
+							$.get("kontakt.html", function(data) {
+								$("#contentwrapper").html(data);
+								
+							});
+							$(".nav_kontakt, .nav_kontakt a").addClass("active");*/
+							
+						} else if (window.location.href.includes("impressum")) {
+							ladeSeite("impressum");
+							//alert("vita");
+							/*
+							$.get("impressum.html", function(data) {
+								$("#contentwrapper").html(data);
+								
+							});
+							$(".nav_impressum, .nav_impressum a").addClass("active");*/
+							
+						} else if (window.location.href.includes("newsletter")) {
+							ladeSeite("newsletter");
+							//alert("vita");
+							/*
+							$.get("newsletter.html", function(data) {
+								$("#contentwrapper").html(data);
+								
+							});
+							$(".nav_newsletter, .nav_newsletter a").addClass("active");
+							*/
+						} else {
+							//alert(window.location);
+							/*$("#content_home").css("display","block");
+							$(".nav_home, .nav_home a").addClass("active");*/
+							ladeSeite("home");
+						}
+					})
+
+	function cbaction() {
+		/*
+		if($('#cb').prop('checked')) {
+			$(".konzert:not(.sologig)").css("display","none");
+		} else {
+			$(".konzert").css("display","block");
+			alteAussortieren();
+		}*/
+	}
+	var ausgeklappt = 0;
+	function klappAus() {
+		
+		if(ausgeklappt < 1){
+			$("#mobileNav li, #mobileDropdown li a").css("max-height","300px");
+			$("#mobileNav .dropdown-menu").css("display","block");
+			$("#mobileNav .dropdown-menu").css("max-height","3000px");
+			$("#mobileNav .dropdown-menu").css("opacity","1");
+			$(".dropdown-menu .dropdown-item").css("max-height","3000px");
+			ausgeklappt = 1;
+		} else {
+			$("#mobileNav .dropdown-menu li, #mobileNav .dropdown-menu li a").css("max-height","0px");
+			$("#mobileNav .dropdown-menu").css("display","none");
+			$("#mobileNav .dropdown-menu").css("max-height","0px");
+			$("#mobileNav .dropdown-menu").css("opacity","0");
+			ausgeklappt = 0;
+		}
+		//$("#mobileDropdown .dropdown-menu").css("display","block");
+	}
+	function schreiben() {
+		ladeSeite("kontakt");
+		setTimeout(() => {
+				$("#emaillink").css("font-size","110%")
+			}, 1000);
+
+	}
+</script>
+</head>
+<body>
+	<div class="container mt-4">
+		<div class="row">
+			<!-- Mobile Navigation (Nur sichtbar auf kleinen Bildschirmen) -->
+			<!-- aaaaalte <div class="col-12 d-block d-md-none">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="#">Mobile Menü</a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#mobileNav">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="mobileNav">
+							<ul class="navbar-nav">
+								<li class="nav-item"><a class="nav-link active" href="#">Startseite</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" id="" href="#">Über
+										uns</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">Dienste</a>
+								</li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" href="#" id="mobileDropdown"
+									role="button" data-bs-toggle="dropdown"> Mehr </a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Option 1</a></li>
+										<li><a class="dropdown-item" href="#">Option 2</a></li>
+										<li>
+											<hr class="dropdown-divider">
+										</li>
+										<li><a class="dropdown-item" href="#">Option 3</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>version -->
+			<div class="col-12 d-block d-md-none">
+			    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+			        <div class="container-fluid">
+			            <a class="navbar-brand" href="#"><!-- Mobile -->Menü</a>
+			            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+			                <span class="navbar-toggler-icon"></span>
+			            </button>
+			            <div class="collapse navbar-collapse" id="mobileNav">
+			                <ul class="navbar-nav">
+			                    <li class="nav-item"><a class="nav-link active" href="#" onclick="ladeSeite('home')">Home</a></li>
+			                    <li class="nav-item"><a class="nav-link" href="#vita" onclick="ladeSeite('vita')">Vita</a></li>
+			                    <li class="nav-item"><a class="nav-link" href="#gesangsunterricht" onclick="ladeSeite('gesangsunterricht')">Gesangsunterricht</a></li>
+			                    <li class="nav-item dropdown">
+			                        <a class="nav-link dropdown-toggle" href="#" id="mobileDropdown" role="button" onclick="klappAus()">Kontakt</a>
+			                        <ul class="dropdown-menu">
+			                        
+			                            <li><a class="dropdown-item" href="#kontakt" onclick="ladeSeite('kontakt')">Kontakt</a></li>
+			                            <li><a class="dropdown-item" href="#newsletter" onclick="ladeSeite('newsletter')">Newsletter</a></li>
+			                            <li><a class="dropdown-item" href="#impressum" onclick="ladeSeite('impressum')">Impressum</a></li>
+			                        </ul>
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+			    </nav>
+			</div>
+			
+			<!-- Sidebar (links, fixiert) -->
+			<div class="col-md-4"><!-- beginn spalte sidebar -->
+				<div class="content sidebar">
+					<div class="author">
+						<div class="author-img">
+							<img
+								src="Felix_port_Yumi_Shimada-BEARBEITET2.jpg"
+								alt="Profile Image">
+						</div>
+						<div class="author-text">
+							<h3 class="author-name">Felix Leander Läpple</h3>
+							<h4 class="author-subtitle">Tenor // Gesangslehrer</h4>
+							<div class="author-social-icons">
+								<a href="http://instagram.com/tenorfelix"> <i
+									class="fab fa-instagram"></i>
+								</a>
+							</div>
+							<div class="author-all-btn">
+								<button type="button" class="btn btn-secondary" onclick="schreiben()">Schreiben
+									Sie mir!</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Hauptinhalt -->
+			<div class="col-md-8">
+				<div class="content">
+					<!-- Desktop Navigation (Nur sichtbar auf großen Bildschirmen) -->
+					<nav
+						class="navbar navbar-expand-lg navbar-dark mb-3 d-none d-md-block">
+						<div class="container-fluid">
+							<div class="collapse show navbar-collapse">
+								<ul class="navbar-nav">
+									<li class="nav-item nav-link show nav_home"><a
+										class="nav-link" href="#" onclick="ladeSeite('home')">Home</a></li>
+									<li class="nav-item nav-link show nav_vita"><a class="nav-link"
+										href="#vita" onclick="ladeSeite('vita')">Vita</a></li>
+									<li class="nav-item nav-link show nav_gesangsunterricht"><a class="nav-link"
+										href="#gesangsunterricht" onclick="ladeSeite('gesangsunterricht')">Gesangsunterricht</a></li>
+									<li class="nav-item nav-link show desktopv dropdown nav_kontakt"><a
+										class="nav-link nav-link dropdown-toggle" href="#kontakt"
+										id="desktopDropdown" role="button" onclick="ladeSeite('kontakt')">Kontakt</a>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#newsletter" onclick="ladeSeite('newsletter')">Newsletter</a></li>
+											<li><a class="dropdown-item" href="#impressum" onclick="ladeSeite('impressum')">Impressum</a></li>
+											<!-- <li>
+												<hr class="dropdown-divider">
+											</li>
+											<li><a class="dropdown-item" href="#">Option 3</a></li>-->
+										</ul></li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+					<div id="contentwrapper">
+						<div id='content_home'>
+							<h2>Home</h2>
+							<p>Herzlich Willkommen auf meiner Website!</p>
+							<p>Um über anstehende Konzerte auf dem Laufenden gehalten zu
+								werden, melden Sie sich gerne für den Newsletter an!</p>
+							<div class="konzertwrapper">
+
+								<table class="cbtab">
+									<tbody>
+										<tr>
+											<td>
+												<div class="checkbox-wrapper-3">
+													<input type="checkbox" id="cb" name="cb" /> <label
+														for="cb" class="toggle"> <span></span>
+													</label>
+												</div>
+											</td>
+											<td>Nur solistische Auftritte anzeigen</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="konzert">
+									<p>
+										<strong>09.03.2025, Osnabrück // </strong>Theater Osnabrück,
+										15:00 <strong> // ESSENCE // CHOREOS // </strong>Stephan
+										Lutermann, Dirigent // Lars Scheibner, Choreografie // <em>
+											<a href="https://choreos20.de/essence/" target="_blank"
+											rel="noopener">(Programm)</a>
+										</em> // <em> <a
+											href="https://www.theater-osnabrueck.de/spielplan-detail/?stid=763&amp;auid=942758"
+											target="_blank" rel="noopener">(Infos und Karten)</a>
+										</em> <strong> <br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div class="konzert">
+									<p>
+										<strong>14.04.2025, Hagen</strong> // Stadthalle, 19:00 // <strong>J.S.Bach,
+											Matthäuspassion</strong> // Cathrin Lange (Sopran) // Henriette Gödde
+										(Alt) // Daniel Johannsen (Tenor: Evangelist und Arien) //
+										Daniel Ochoa (Bass: Arien) // Maximilian Lika (Bass: Jesus) //
+										WDR Rundfunkchor // Kölner Domchor // Philharmonisches
+										Orchester Hagen // Joseph Trafton // <em> <a
+											href="https://stadthalle-hagen.de/14-04-2025-matthaeus-passion/"
+											target="_blank" rel="noopener">(Infos)</a>
+										</em>// <a
+											href="https://www.eventim.de/event/matthaeus-passion-theater-hagen-stadthalle-hagen-19053262/"
+											target="_blank" rel="noopener"> <em>(Karten)</em>
+										</a>
+									</p>
+
+								</div>
+
+								<div class="konzert">
+									<p>
+										<strong>15.04.2025, Köln</strong> // Philharmonie 19:00 // <strong>J.S.Bach,
+											Matthäuspassion</strong> // Cathrin Lange (Sopran) // Henriette Gödde
+										(Alt) // Daniel Johannsen (Tenor: Evangelist und Arien) //
+										Daniel Ochoa (Bass: Arien) // Maximilian Lika (Bass: Jesus) //
+										WDR Rundfunkchor // Kölner Domchor // Philharmonisches
+										Orchester Hagen // Joseph Trafton // <em> <a
+											href="https://www.koelner-philharmonie.de/de/programm/bachs-matthaus-passion/4155"
+											target="_blank" rel="noopener">(Infos und Karten)</a>
+										</em>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+
+									<p>
+										<span style="text-decoration: underline;"> <a
+											href="https://www.felixlaepple.de/site/konzerte-dvorak/">
+												<strong>18.04.2025, Remscheid-Lennep</strong> // Ev.
+												Stadtkirche Lennep, 18:00 // <strong>Antonín
+													Dvořák: Stabat Mater</strong>
+										</a></span> // Andrea Kwade, Sopran // Cordelia Katharina Weil,
+										Mezzosopran // Felix Leander Läpple, Tenor // Soowon Han,
+										Bariton // Mitglieder der Lenneper Kantorei // Mitglieder des
+										Lenneper Kammerchores // l‘arte del mondo // Thilo Ratai,
+										Dirigent // Caroline Huppert, Dirigentin // <a
+											href="https://www.felixlaepple.de/site/konzerte-dvorak/">
+											<em>(Infos und Karten)</em>
+										</a> <strong> <br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+
+									<p>
+										<strong>02.05.2025, Köln</strong>, // Philharmonie, 20:00 // <strong>Abel
+											Selaocoe –</strong> <strong>VOICES</strong> // Abel Selaocoe cello,
+										vocals // Bernhard Schimpelsberger, percussion // Kölner
+										Vokalsolisten // <em> <a
+											href="https://www.koelner-philharmonie.de/de/programm/abel-selaocoe/4280"
+											target="_blank" rel="noopener">(Infos und Karten)</a>
+										</em>
+									</p>
+
+								</div>
+
+								<div class="konzert">
+									<p>
+										<strong>23.05.2025, Köln</strong>, // Philharmonie, 20:00 // <strong>Edward
+											Elgar, The Dream of Gerontius</strong> // Jamie Barton, Mezzosopran //
+										Allan Clayton, Tenor // Derek Welton, Bassbariton //
+										Rundfunkchor Berlin // WDR Rundfunkchor // Simon Halsey,
+										Einstudierung // WDR Sinfonieorchester // Cristian Măcelaru,
+										Dirigent // <a
+											href="https://www.koelner-philharmonie.de/de/programm/himmel-holle-the-dream-of-gerontius/4209"
+											target="_blank" rel="noopener"> <em>(Infos und
+												Karten)</em>
+										</a>
+									</p>
+
+								</div>
+
+								<div class="konzert">
+									<p>
+										<strong>24.05.2025, Köln</strong> // Philharmonie, 20:00 // <strong>Edward
+											Elgar, The Dream of Gerontius</strong> // Jamie Barton, Mezzosopran //
+										Allan Clayton, Tenor // Derek Welton, Bassbariton //
+										Rundfunkchor Berlin // WDR Rundfunkchor // Simon Halsey,
+										Einstudierung // WDR Sinfonieorchester // Cristian Măcelaru,
+										Dirigent // <em> <a
+											href="https://www.koelner-philharmonie.de/de/programm/himmel-holle-the-dream-of-gerontius/4210"
+											target="_blank" rel="noopener">(Infos und Karten)</a>
+										</em>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>30.05.2025, Nürnberg </strong>// 20:30, Gustav Adolf
+										Gedächtniskirche, Nürnberg, Lichthof // <strong>ESSENCE</strong>
+										// <strong>CHOREOS</strong> // Stephan Lutermann, Dirigent //
+										Lars Scheibner, Choreografie // <em> <a
+											href="https://choreos20.de/essence/" target="_blank"
+											rel="noopener">(Programm)</a>
+										</em>&nbsp;
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>15.06.2025, Mettmann</strong> // 19:00, Ev. Kirche
+										Freiheitstraße // <strong>Gioachino Rossini: Petite
+											Messe Solenelle</strong> // NN, Sopran // NN, Alt // Felix Leander
+										Läpple, Tenor // NN, Bass // Tanja Heesen, Dirigentin <strong>
+											<br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>16.09.2025, Frankfurt </strong>// 18:00, Alte Oper
+										Frankfurt // <strong>ESSENCE</strong> // <strong>CHOREOS</strong>
+										// Stephan Lutermann, Dirigent // Lars Scheibner, Choreografie
+										// <em> <a href="https://choreos20.de/essence/"
+											target="_blank" rel="noopener">(Programm)</a>
+										</em>&nbsp;
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>17.09.2025, Frankfurt </strong>// 18:00, Alte Oper
+										Frankfurt // <strong>ESSENCE</strong> // <strong>CHOREOS</strong>
+										// Stephan Lutermann, Dirigent // Lars Scheibner, Choreografie
+										// <em> <a href="https://choreos20.de/essence/"
+											target="_blank" rel="noopener">(Programm)</a>
+										</em>&nbsp;
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>26.10.2025, Bonn</strong> // 11:00, <span
+											class="BxUVEf ILfuVd" lang="de"> <span class="hgKElc">Ort
+												tba</span>
+										</span> // <strong> Ries, Offertorium Floriani /&nbsp; <span
+											class="uppercase">Dall’Abaco</span>, Serenata Fattassi in
+											occasione del giorno del nome si S.A.S.E. di Clemente Augusto
+											Arcivescovo…
+										</strong> // NN, Sopran // NN, Alt // Felix Leander Läpple, Tenor //
+										Felix Rathgeber, Bass // Beethoven Orchester Bonn // Richard
+										Egarr, Dirigent <strong> <br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>13.12.2025, Heusenstamm</strong> // 18:00, <span
+											class="BxUVEf ILfuVd" lang="de"> <span class="hgKElc">Maria
+												Himmelskron</span>
+										</span> // <strong> Johann Sebastian Bach:
+											Weihnachtsoratorium, Kantaten I-III</strong> // NN, Sopran // NN, Alt
+										// Felix Leander Läpple, Tenor // NN, Bass // Dorothea
+										Baumann, Dirigentin <strong> <br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+									<p>
+										<strong>14.12.2025, Langen</strong> // Zeit und Ort tba <strong>
+											// Johann Sebastian Bach: Weihnachtsoratorium, Kantaten I-III</strong>
+										// NN, Sopran // NN, Alt // Felix Leander Läpple, Tenor // NN,
+										Bass // Elvira Schwarz, Dirigentin <strong> <br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div class="konzert sologig">
+
+									<p>
+										<strong>21.12.2025, Dreieich</strong> // Zeit und Ort tba <strong>
+											// Johann Sebastian Bach: Weihnachtsoratorium, Kantaten I-III</strong>
+										// NN, Sopran // NN, Alt // Felix Leander Läpple, Tenor // NN,
+										Bass // Claudia von Savigny, Dirigentin <strong> <br>
+										</strong>
+									</p>
+
+								</div>
+
+								<div style="display: none;">
+									<div>
+										<div>
+											<h2>2026</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="footerlinks">
+						<a href="?impressum">Impressum</a>
+						<a href="?impressum">Datenschutzerklärung</a>
+						<a href="?kontakt">Kontakt</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
