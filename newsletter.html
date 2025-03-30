@@ -3,5 +3,11 @@
 
 <h1>Newsletter</h1>
 <p>
-Um sich für den Newsletter anzumelden, schreiben Sie mir bitte eine Mail an die Mailadresse im <a href="index.html?impressum">Impressum</a>.
+Um sich für den Newsletter anzumelden, schreiben Sie mir bitte eine Mail an <span id="zielfuermail">(bitte javaScript aktivieren)</span>
 </p></div>
+
+<script type="text/javascript">
+	var adresse = atob("bWFpbEBmZWxpeGxhZXBwbGUuZGU=");
+
+	$("#zielfuermail").html("<a href='mailto:"+adresse+"'>" + adresse + "</a>");
+</script>
