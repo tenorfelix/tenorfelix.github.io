@@ -190,7 +190,7 @@ body {
 	transition: all 0.8s ease;
 }
 
-.konzertwrapper:has(#cb:checked) .konzert {
+.konzertwrapper:has(#cb:checked) .konzert:not(.sologig) {
 	/*transform: scale(1);*/
 	opacity: 0;
 	/*font-style: italic;*/
@@ -223,7 +223,7 @@ body {
 		columns: 2; 
 	}
 	#vita, #gesangsunterricht, #newsletter, .pagebody {
-		padding: 3em;
+		padding: 3.5em;
 	}
 }
 li.active li.active, li.active li a:link.active, li.active li a:visited.active {
