@@ -394,7 +394,7 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 						} else if (window.location.href.includes("newsletter")) {
 							ladeSeite("newsletter");
 						} else if (const found = window.location.href.match(regex)) {
-							alert(found[0]);
+							console.log(found[0]);
 						} else {
 							ladeSeite("home");
 						}
