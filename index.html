@@ -381,79 +381,21 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 									$(this).find('.dropdown-menu').first()
 											.stop(true, true).slideUp();
 								});
+
+						const regex = /concert_[a-z0-9]+/g;
 						if (window.location.href.includes("vita")) {
 							ladeSeite("vita");
-						
-							//alert("vita");
-							/*var newhtml = "<div id='vita' style='columns:2; padding:3em;'><p>Felix Leander Läpple wurde 1996 in Frankfurt am Main geboren. Im Grundschulalter übernahm er bereits die Hauptrolle in einem Kindermusical und sang ab 2007 im Kinderchor Frankfurt in Verbindung mit dem Hessischen Rundfunk. 2016-2017 nahm er ersten Gesangsunterricht bei Erhard Brunner. Ab 2020 studierte er an der Hochschule für Musik und Tanz Köln Gesangspädagogik bei Martin Lindsay, seit 2022 im Bachelor of Music Gesang bei Prof. Brigitte Lindner und Boris Leisenheimer.</p>"
-									+
-
-									"<p>2023 debütierte er mit J.S. Bachs Weihnachtsoratorium als Evangelist und Arientenor in Köln unter Leitung von Hanna Bohlen. Seinen ersten Liederabend sang er im Juni 2024 gemeinsam mit Sandrine Droin, Sopran, und Wolfgang Runkel am Klavier in Bad Orb mit Schumanns Dichterliebe.</p>"
-									+
-
-									"<p>Seit Januar 2024 ist er Mitglied des Vokal- und Tanzensembles CHOREOS unter Stephan Lutermann und Lars Scheibner. Seit September 2024 ist er Akademist der WDR-Chorakademie.</p>"
-									+
-
-									"<p>Konzertreisen führten ihn u.a. nach Aarhus, Rom, Sizilien, Barcelona, Istanbul und Manila (Philippinen).</p></div>";
-							*/
-							
-							/*$.get("vita.html", function(data) {
-								$("#contentwrapper").html(data);
-							});
-							$(".nav_vita, .nav_vita a").addClass("active");*/
-							
-							
-						} else if (window.location.href
-								.includes("gesangsunterricht")) {
+						} else if (window.location.href.includes("gesangsunterricht")) {
 							ladeSeite("gesangsunterricht");
-						
-							//alert("vita");
-							/*var newhtml = "<div id='gesangsunterricht' style='columns:1; padding:3em;'><p>Ich biete Gesangsunterricht in Köln-Mülheim an.</p>"
-									+
-
-									"<p>Kommen Sie bei Interesse gerne auf mich zu.</p>"
-									+ "</div>";
-							$("#contentwrapper").html(newhtml);*/
-							/*
-							$.get("gesangsunterricht.html", function(data) {
-								$("#contentwrapper").html(data);
-							});
-							$(".nav_gesangsunterricht, .nav_gesangsunterricht a").addClass("active");
-							*/
 						} else if (window.location.href.includes("kontakt")) {
 							ladeSeite("kontakt");
-							//alert("vita");
-							/*
-							$.get("kontakt.html", function(data) {
-								$("#contentwrapper").html(data);
-								
-							});
-							$(".nav_kontakt, .nav_kontakt a").addClass("active");*/
-							
 						} else if (window.location.href.includes("impressum")) {
 							ladeSeite("impressum");
-							//alert("vita");
-							/*
-							$.get("impressum.html", function(data) {
-								$("#contentwrapper").html(data);
-								
-							});
-							$(".nav_impressum, .nav_impressum a").addClass("active");*/
-							
 						} else if (window.location.href.includes("newsletter")) {
 							ladeSeite("newsletter");
-							//alert("vita");
-							/*
-							$.get("newsletter.html", function(data) {
-								$("#contentwrapper").html(data);
-								
-							});
-							$(".nav_newsletter, .nav_newsletter a").addClass("active");
-							*/
+						} else if (const found = window.location.href.match(regex)) {
+							alert(found[0]);
 						} else {
-							//alert(window.location);
-							/*$("#content_home").css("display","block");
-							$(".nav_home, .nav_home a").addClass("active");*/
 							ladeSeite("home");
 						}
 					})
