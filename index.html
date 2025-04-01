@@ -383,6 +383,7 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 								});
 
 						const regex = /concert_[a-z0-9]+/g;
+						const found = window.location.href.match(regex)
 						if (window.location.href.includes("vita")) {
 							ladeSeite("vita");
 						} else if (window.location.href.includes("gesangsunterricht")) {
@@ -393,7 +394,7 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 							ladeSeite("impressum");
 						} else if (window.location.href.includes("newsletter")) {
 							ladeSeite("newsletter");
-						} else if (const found = window.location.href.match(regex)) {
+						} else if (found) {
 							console.log(found[0]);
 						} else {
 							ladeSeite("home");
