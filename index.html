@@ -360,14 +360,20 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 		});
 		
 
+	}
+	
+	function ladeSeiteUndRunter(pagename) {
+
+		ladeSeite(pagename);
 		/* und runtesliden!*/
 		$('html, body').stop().animate({
 	        'scrollTop': $("#contentwrapper").offset().top
 	    }, 900, 'swing', function () {
 	        // window.location.hash = target;
 	    });
+		
 	}
-	
+
 	$(document)
 			.ready(
 					function() {
@@ -485,16 +491,16 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 			            </button>
 			            <div class="collapse navbar-collapse" id="mobileNav">
 			                <ul class="navbar-nav">
-			                    <li class="nav-item"><a class="nav-link active" href="#" onclick="ladeSeite('home')">Home</a></li>
-			                    <li class="nav-item"><a class="nav-link" href="#vita" onclick="ladeSeite('vita')">Vita</a></li>
-			                    <li class="nav-item"><a class="nav-link" href="#gesangsunterricht" onclick="ladeSeite('gesangsunterricht')">Gesangsunterricht</a></li>
+			                    <li class="nav-item"><a class="nav-link active" href="#" onclick="ladeSeiteUndRunter('home')">Home</a></li>
+			                    <li class="nav-item"><a class="nav-link" href="#vita" onclick="ladeSeiteUndRunter('vita')">Vita</a></li>
+			                    <li class="nav-item"><a class="nav-link" href="#gesangsunterricht" onclick="ladeSeiteUndRunter('gesangsunterricht')">Gesangsunterricht</a></li>
 			                    <li class="nav-item dropdown">
 			                        <a class="nav-link dropdown-toggle" href="#" id="mobileDropdown" role="button" onclick="klappAus()">Kontakt</a>
 			                        <ul class="dropdown-menu">
 			                        
-			                            <li><a class="dropdown-item" href="#kontakt" onclick="ladeSeite('kontakt')">Kontakt</a></li>
-			                            <li><a class="dropdown-item" href="#newsletter" onclick="ladeSeite('newsletter')">Newsletter</a></li>
-			                            <li><a class="dropdown-item" href="#impressum" onclick="ladeSeite('impressum')">Impressum</a></li>
+			                            <li><a class="dropdown-item" href="#kontakt" onclick="ladeSeiteUndRunter('kontakt')">Kontakt</a></li>
+			                            <li><a class="dropdown-item" href="#newsletter" onclick="ladeSeiteUndRunter('newsletter')">Newsletter</a></li>
+			                            <li><a class="dropdown-item" href="#impressum" onclick="ladeSeiteUndRunter('impressum')">Impressum</a></li>
 			                        </ul>
 			                    </li>
 			                </ul>
