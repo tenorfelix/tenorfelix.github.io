@@ -408,6 +408,8 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 							ladeSeite("impressum");
 						} else if (window.location.href.includes("newsletter")) {
 							ladeSeite("newsletter");
+						} else if (window.location.href.includes("presse")) {
+							ladeSeite("presse");
 						} else if (found) {
 							ladeSeite(found[0]);
 						} else {
@@ -493,6 +495,7 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 			                <ul class="navbar-nav">
 			                    <li class="nav-item"><a class="nav-link active" href="#" onclick="ladeSeiteUndRunter('home')">Home</a></li>
 			                    <li class="nav-item"><a class="nav-link" href="#vita" onclick="ladeSeiteUndRunter('vita')">Vita</a></li>
+			                    <li class="nav-item"><a class="nav-link" href="#vita" onclick="ladeSeiteUndRunter('presse')">Presse</a></li>
 			                    <li class="nav-item"><a class="nav-link" href="#gesangsunterricht" onclick="ladeSeiteUndRunter('gesangsunterricht')">Gesangsunterricht</a></li>
 			                    <li class="nav-item dropdown">
 			                        <a class="nav-link dropdown-toggle" href="#" id="mobileDropdown" role="button" onclick="klappAus()">Kontakt</a>
@@ -547,6 +550,8 @@ li.active li.active, li.active li a:link.active, li.active li a:visited.active {
 										class="nav-link" href="#" onclick="ladeSeite('home')">Home</a></li>
 									<li class="nav-item nav-link show nav_vita"><a class="nav-link"
 										href="#vita" onclick="ladeSeite('vita')">Vita</a></li>
+									<li class="nav-item nav-link show nav_presse"><a class="nav-link"
+										href="#" onclick="ladeSeite('presse')">Presse</a></li>
 									<li class="nav-item nav-link show nav_gesangsunterricht"><a class="nav-link"
 										href="#gesangsunterricht" onclick="ladeSeite('gesangsunterricht')">Gesangsunterricht</a></li>
 									<li class="nav-item nav-link show desktopv dropdown nav_kontakt"><a
